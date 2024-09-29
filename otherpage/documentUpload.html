@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Document</title>
+  <link rel="icon" href="mid.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/docUpl.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Upload Documents</h2>
+
+  <div class="form-group">
+    <label for="identityProof">Identity Proof:</label>
+    <input type="file" id="identityProof" accept=".pdf,.jpg,.jpeg,.png">
+    <button class="file-upload" for="identityProof">Choose File</button>
+    <button class="upload-btn" id="uploadIdentity">Upload</button>
+  </div>
+
+  <div class="form-group">
+    <label for="incomeTax">Income Tax Returns:</label>
+    <input type="file" id="incomeTax" accept=".pdf,.jpg,.jpeg,.png">
+    <button class="file-upload" for="incomeTax">Choose File</button>
+    <button class="upload-btn" id="uploadIncome">Upload</button>
+  </div>
+
+  <div class="form-group">
+    <label for="addressProof">Address Proof:</label>
+    <input type="file" id="addressProof" accept=".pdf,.jpg,.jpeg,.png">
+    <button class="file-upload" for="addressProof">Choose File</button>
+    <button class="upload-btn" id="uploadAddress">Upload</button>
+  </div>
+
+  <div class="form-group">
+    <label for="bankStatement">Bank Statement:</label>
+    <input type="file" id="bankStatement" accept=".pdf,.jpg,.jpeg,.png">
+    <button class="file-upload" for="bankStatement">Choose File</button>
+    <button class="upload-btn" id="uploadBank">Upload</button>
+  </div>
+
+  <button class="submit-btn" id="submitBtn">Submit</button>
+</div>
+
+<script>
+// File upload button functionality
+const fileUploadButtons = document.querySelectorAll(".file-upload");
+const fileInputs = document.querySelectorAll("input[type='file']");
+
+fileUploadButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    fileInputs[index].click();
+  });
+});
+
+// File upload confirmation (replace with your actual upload logic)
+const uploadButtons = document.querySelectorAll(".upload-btn");
+
+uploadButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    const fileInput = fileInputs[index];
+    const fileName = fileInput.files[0].name;
+    alert("Uploading " + fileName + "..."); 
+    // Here, you would handle the actual file upload using AJAX or other methods
+  });
+});
+
+// Submit button functionality
+const submitButton = document.getElementById("submitBtn");
+
+submitButton.addEventListener("click", () => {
+  // You can add validation and other actions before submitting
+  alert("Submitting form..."); 
+  // Here, you would send the form data to the server for processing
+});
+</script>
+
+</body>
+</html>

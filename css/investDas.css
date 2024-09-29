@@ -1,0 +1,127 @@
+body {
+    background-color: #ffffff;
+    color: #fff;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    /* border-radius: 10px; */
+    width: 150%;
+    background-color: #282828;
+    max-width: 900px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: #383838;
+    width: 86%;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-info {
+    margin-bottom: 10px;
+}
+
+.card-info span {
+    font-weight: bold;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.chatbot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #383838;
+    width: 50%;
+    max-width: 300px;
+}
+
+.chatbot-message {
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.chatbot-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    width: 100%;
+}
+
+.chatbot-button {
+    padding: 10px 20px;
+    margin: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chatbot-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .chatbot {
+        width: 50%;
+    }
+}

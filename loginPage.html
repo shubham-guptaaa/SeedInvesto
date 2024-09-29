@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose User Type</title>
+    <style>
+        body {
+            background-color: #454647;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 600px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .left, .right {
+            width: 50%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .left {
+            background-color: #100232;
+        }
+
+        .right {
+            background-color: #00063e;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0069d9;
+        }
+
+        .user-type-buttons {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .user-type-buttons button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .user-type-buttons button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h2>Choose User Type</h2>
+    <div class="user-type-buttons">
+        <button id="innovatorButton">Innovator</button>
+        <button id="investorButton">Investor</button>
+    </div>
+    <div class="container">
+        <div class="left">
+            <h2>Sign in</h2>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+           <a href="main.html"> <button id="signInButton">SIGN IN</button></a>
+        </div>
+        <div class="right">
+            <h2>Hello, Friend!</h2>
+            <p>Enter your personal details and start journey with us</p>
+            <a href="signuppage.html">
+            <button id="signUpButton">SIGN UP</button>
+            </a>
+            <button id="forgotPasswordButton">FORGOT PASSWORD?</button>
+        </div>
+    </div>
+
+    <script>
+        const innovatorButton = document.getElementById('innovatorButton');
+        const investorButton = document.getElementById('investorButton');
+        const signUpButton = document.getElementById('signUpButton');
+        const signInButton = document.getElementById('signInButton');
+        const forgotPasswordButton = document.getElementById('forgotPasswordButton');
+    
+        // Function to handle user type selection
+        function handleUserTypeSelection(userType) {
+            // Implement your logic here based on the selected user type
+            console.log(`Selected user type: ${userType}`);
+        }
+    
+        // Event listeners for user type buttons
+        innovatorButton.addEventListener('click', () => handleUserTypeSelection('Innovator'));
+        investorButton.addEventListener('click', () => handleUserTypeSelection('Investor'));
+    
+        // Function to store login details in localStorage
+        function storeLoginDetails() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            // Check if email and password are not empty
+            if (email && password) {
+                // Store the email and password in localStorage
+                localStorage.setItem('email', email);
+                localStorage.setItem('password', password);
+    
+                // Log the stored values (just for debugging purposes)
+                console.log('Login details stored:', { email, password });
+    
+                // Redirect to main page (you can remove this if you don't want immediate redirection)
+                window.location.href = 'main.html';
+            } else {
+                alert('Please fill in both email and password fields.');
+            }
+        }
+    
+        // Event listeners for signup and signin buttons
+        signUpButton.addEventListener('click', () => {
+            console.log('Sign up button clicked');
+        });
+    
+        signInButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default button behavior (e.g., form submission)
+            storeLoginDetails(); // Call the function to store login details
+        });
+    
+        forgotPasswordButton.addEventListener('click', () => {
+            console.log('Forgot password button clicked');
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Form</title>
+    <link rel="icon" href="mid.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/loanForm.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Loan Application Form</h1>
+
+        <form id="loanForm">
+            <label for="companyName">Company Name:</label>
+            <input type="text" id="companyName" name="companyName" required>
+
+            <label for="ownerName">Owner Name:</label>
+            <input type="text" id="ownerName" name="ownerName" required>
+
+            <label for="contactNumber">Contact Number:</label>
+            <input type="number" id="contactNumber" name="contactNumber" required>
+
+            <label for="businessType">Business Type:</label>
+            <input type="text" id="businessType" name="businessType" required>
+
+            <label for="yearsInOperation">Years in Operation:</label>
+            <input type="number" id="yearsInOperation" name="yearsInOperation" required>
+
+            <label for="annualRevenue">Annual Revenue:</label>
+            <input type="number" id="annualRevenue" name="annualRevenue" required>
+
+            <label for="loanAmount">Loan Amount Required (INR):</label>
+            <input type="number" id="loanAmount" name="loanAmount" required>
+
+            <label for="purposeOfLoan">Purpose of Loan:</label>
+            <textarea id="purposeOfLoan" name="purposeOfLoan" required></textarea>
+
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the terms and conditions</label>
+
+            <button type="submit">Upload Document</button>
+        </form>
+    </div>
+
+    <script>
+        const loanForm = document.getElementById('loanForm');
+        
+        loanForm.addEventListener('submit', (event) => {
+            event.preventDefault();  // Prevent the form from being submitted traditionally
+            
+            const formData = new FormData(loanForm);  // Collect form data
+            const data = {};
+            
+            for (const [key, value] of formData.entries()) {
+                data[key] = value;  // Create an object with form data
+            }
+
+            // Validating the checkbox to ensure the user agreed to terms
+            if (!data.terms) {
+                alert("You must agree to the terms and conditions!");
+                return;
+            }
+
+            // Storing form data in localStorage
+            localStorage.setItem('loanApplication', JSON.stringify(data));
+            alert('Loan application stored successfully!');
+
+            // Optionally redirect to a document upload page
+            window.location.href = 'documentUpload.html';
+        });
+    </script>
+</body>
+</html>
