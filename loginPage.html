@@ -3,166 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose User Type</title>
+    <title>Login and Signup Flip Page</title>
     <style>
-        body {
-            background-color: #454647;
-            color: white;
-            font-family: sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            width: 600px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .left, .right {
-            width: 50%;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .left {
-            background-color: #100232;
-        }
-
-        .right {
-            background-color: #00063e;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        button {
-            background-color: #007bff;
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
             color: white;
-            padding: 12px 20px;
-            margin: 10px 0;
+        }
+
+        .user-type {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .user-type h2 {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .user-type button {
+            margin: 0 10px; /* Added margin to create space between buttons */
+            padding: 10px 20px;
+            background-color: sienna;
+            color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .user-type button:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            perspective: 1000px;
+        }
+
+        .flip-card {
+            width: 800px;
+            height: 400px;
+            position: relative;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .flip-card-front, .flip-card-back {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-section, .signup-section {
+            width: 50%;
+            height: 100%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-section {
+            background-color: darkgoldenrod;
+        }
+
+        .signup-section {
+            background-color: teal;
+            color: white;
+        }
+
+        .flip-card-front {
+            z-index: 2;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .login-section h2, .signup-section h2 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 90%;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        button {
+            padding: 4px;
+            width: 45%;
+            border: none;
+            border-radius: 5px;
+            background-color: sienna;
+            color: white;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #0069d9;
+            background-color: #45a049;
         }
 
-        .user-type-buttons {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .user-type-buttons button {
-            background-color: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            margin-right: 10px;
-            border: none;
-            border-radius: 4px;
+        #flip-to-signup, #flip-to-login {
+            background-color: transparent;
+            color: #007BFF;
+            margin-top: 15px;
             cursor: pointer;
+            border: none;
+            text-decoration: underline;
+            color: #ccc;
         }
 
-        .user-type-buttons button:hover {
-            background-color: #5a6268;
+        .button-group {
+            display: flex;
+            justify-content: space-between;
         }
+
     </style>
 </head>
 <body>
-    <h2>Choose User Type</h2>
-    <div class="user-type-buttons">
-        <button id="innovatorButton">Innovator</button>
-        <button id="investorButton">Investor</button>
-    </div>
-    <div class="container">
-        <div class="left">
-            <h2>Sign in</h2>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-           <a href="main.html"> <button id="signInButton">SIGN IN</button></a>
-        </div>
-        <div class="right">
-            <h2>Hello, Friend!</h2>
-            <p>Enter your personal details and start journey with us</p>
-            <a href="signuppage.html">
-            <button id="signUpButton">SIGN UP</button>
-            </a>
-            <button id="forgotPasswordButton">FORGOT PASSWORD?</button>
-        </div>
-    </div>
 
-    <script>
-        const innovatorButton = document.getElementById('innovatorButton');
-        const investorButton = document.getElementById('investorButton');
-        const signUpButton = document.getElementById('signUpButton');
-        const signInButton = document.getElementById('signInButton');
-        const forgotPasswordButton = document.getElementById('forgotPasswordButton');
-    
-        // Function to handle user type selection
-        function handleUserTypeSelection(userType) {
-            // Implement your logic here based on the selected user type
-            console.log(`Selected user type: ${userType}`);
-        }
-    
-        // Event listeners for user type buttons
-        innovatorButton.addEventListener('click', () => handleUserTypeSelection('Innovator'));
-        investorButton.addEventListener('click', () => handleUserTypeSelection('Investor'));
-    
-        // Function to store login details in localStorage
-        function storeLoginDetails() {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-    
-            // Check if email and password are not empty
-            if (email && password) {
-                // Store the email and password in localStorage
-                localStorage.setItem('email', email);
-                localStorage.setItem('password', password);
-    
-                // Log the stored values (just for debugging purposes)
-                console.log('Login details stored:', { email, password });
-    
-                // Redirect to main page (you can remove this if you don't want immediate redirection)
-                window.location.href = 'main.html';
-            } else {
-                alert('Please fill in both email and password fields.');
-            }
-        }
-    
-        // Event listeners for signup and signin buttons
-        signUpButton.addEventListener('click', () => {
-            console.log('Sign up button clicked');
-        });
-    
-        signInButton.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent default button behavior (e.g., form submission)
-            storeLoginDetails(); // Call the function to store login details
-        });
-    
-        forgotPasswordButton.addEventListener('click', () => {
-            console.log('Forgot password button clicked');
-        });
-    </script>
-    
+<div class="user-type">
+    <h2>Choose User Type</h2>
+    <div style="display: flex; justify-content: center;">
+        <button id="innovator">Innovator</button>
+        <button id="investor">Investor</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <!-- Login Form -->
+            <div class="flip-card-front">
+                <div class="login-section">
+                    <h2>Sign in</h2>
+                    <form id="login-form">
+                        <div class="input-container">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <div class="button-group">
+                            <button type="submit">SIGN IN</button>
+                            <button class="forgot-password">FORGOT PASSWORD?</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-section">
+                    <h2>Welcome Back!</h2>
+                    <p>To keep connected with us, please log in with your personal info</p>
+                    <button id="flip-to-signup">SIGN UP</button>
+                </div>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="flip-card-back">
+                <div class="signup-section">
+                    <h2>Create Account</h2>
+                    <form id="signup-form">
+                        <div class="input-container">
+                            <input type="text" placeholder="First Name" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" placeholder="Last Name" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" placeholder="Organization" required>
+                        </div>
+                        <div class="input-container">
+                            <input type="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit">SIGN UP</button>
+                    </form>
+                </div>
+                <div class="login-section">
+                    <h2>Welcome Back Innovator!</h2>
+                    <p>To keep connected with us, please log in with your personal info</p>
+                    <button id="flip-to-login">SIGN IN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('flip-to-signup').addEventListener('click', function() {
+        document.querySelector('.flip-card').classList.add('flipped');
+    });
+
+    document.getElementById('flip-to-login').addEventListener('click', function() {
+        document.querySelector('.flip-card').classList.remove('flipped');
+    });
+</script>
+
 </body>
 </html>
